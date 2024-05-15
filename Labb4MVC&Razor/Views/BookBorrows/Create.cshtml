@@ -1,0 +1,47 @@
+﻿@model Labb4MVC_Razor.Models.BookBorrow
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Book Checkout</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label">Customer's Name</label>
+                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookId" class="control-label">Book's Author</label>
+                <select asp-for="BookId" class ="form-control" asp-items="ViewBag.BookId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookBorrowDate" class="control-label">Checkout Date</label>
+                <input asp-for="BookBorrowDate" class="form-control" />
+                <span asp-validation-for="BookBorrowDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookReturnDate" class="control-label">Return Date</label>
+                <input asp-for="BookReturnDate" class="form-control" />
+                <span asp-validation-for="BookReturnDate" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Status" value="@Model.Status" /> 
+            <div class="form-group mt-3">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
